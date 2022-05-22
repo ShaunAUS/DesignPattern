@@ -47,6 +47,42 @@
 -> **여러쓰레드가 와도 바로 초기화된 인스턴스를 반환하기떄문에** 틈이 다른쓰레드들이 들어올 틈이 없다.
 
 > - **문제점:** 이 방법은 초기화시 인스턴스를 생성함으로 인스턴스 비용과 사용여부 (만들어놓고 사용 x) 을 고려해야함
+
+그래서 사용이 될떄만들면서 synchronized 사용하기 싫을때는??
  
- 
+ ### 방법 3.Double checked locking
+
+![](https://velog.velcdn.com/images/wnsqud70/post/6be3e18d-d667-4a2e-8dcb-809c7ed1eebe/image.png)
+
+- If문 안쪽에 **synchronized 코드를 통해 한번더 검사**해준다
+
+- 쓰레드 1 이 if문 통과 ->synchronized 진입 , 그때 쓰레드 2도 if문을 통과했지만 synchronized 코드 때문에 그 안으로는 들어갈수없고 대기
+
+- 그사이 쓰레드 1이 인스턴스를 만들고 반환, 쓰레드 2는 이제서야 진입하지만 이미 인스턴스가 만들어 져있음으로 인스턴스 반환 
+
+- 이 방법은 매번 메서드 호출시 synchronized를 사용하지 않는다 if문 =(인스턴스가 존재하는경우)
+
+> - 문제점:복잡함
+
+잠깐! volatile이란?
+
+> **Volatile**
+- volatile로 선언된 변수가 있는 코드는 최적화되지 않는다.
+- volatile 키워드는 변수를 'Main Memory에 저장하겠다'라고 명시하는 것이다.
+- 변수의 값을 Read할 때마다 CPU cache에 저장된 값이 아닌, Main Memory에서 읽는 것이다.
+- 또한 변수의 값을 Write할 때마다 Main Memory에 작성하는 것이다.
+
+### 방벙4. static inner class 
+![](https://velog.velcdn.com/images/wnsqud70/post/40fa48e7-a51b-476a-ae15-a8b082b93c63/image.png)
+
+
+- 안전하면서도 방법3처럼 복잡하지 않음
+
+- **메서드 호출시 인스턴스를 만들**기 떄문에 레이지 로딩도 가능함 / **가장 간단해서 권장하는 방법중 하나이다.**
+
+- 필요할때만 호출가능 + 간편함 +static 글로벌 접근 + final
+
+
+
+
  WIP
