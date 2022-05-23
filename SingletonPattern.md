@@ -84,5 +84,32 @@
 
 
 
+이렇게 다양한 방법으로도 사용가능하지만 대표적인 방법들을 알아보자
+
+# 싱글톤 깨뜨리기
+
+## 리플렉션
+
+![](https://velog.velcdn.com/images/wnsqud70/post/56945ed9-cfcc-4164-88ac-26eac4426a0b/image.png)
+
+
+
+- 첫줄에 있는 getInstance() 는 우리가 방법4 에서 구현한대로 잘 나온 인스턴스
+
+- 두번째는 리플렉션을 사용해서 만든 인스턴스이이다. **(두 인스턴스는 다르다)**
+
+- **setAcceible(true) 를 통해 pritvate 접근제어자였던 생성자에게 접근 가능해진다.**
+
+## 직렬화/역직렬화
+
+![](https://velog.velcdn.com/images/wnsqud70/post/cd18d74b-9f7a-4fd2-8737-da50b23f4d34/image.png)
+- 해당 클래스는 Serializabled 인터페이스를 구현해야함
+
+- 직렬화 : object를 file 형태로 디스크에 저장하는 방법
+- 역직렬화 : 그반대로 file을 읽어 object 생성 -> **object가 만들어 질때 생성자를 이용해 다른 인스턴스를 다시 생성해줌**
+
+
+-  역직렬화시 생기는 문제는 구현시 readResolve() 라는 메서드 안에 우리가 만든 싱글톤 로직을 넣어주면 됀다.그렇게 되면 같은 인스턴스 생성 가능
+**역직렬화시에 readResolve() 를 사용하기 떄문**
 
  WIP
