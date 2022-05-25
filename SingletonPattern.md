@@ -112,4 +112,33 @@
 -  역직렬화시 생기는 문제는 구현시 readResolve() 라는 메서드 안에 우리가 만든 싱글톤 로직을 넣어주면 됀다.그렇게 되면 같은 인스턴스 생성 가능
 **역직렬화시에 readResolve() 를 사용하기 떄문**
 
+# 싱글톤 깨뜨리기 대응방안
+
+## 리플렉션-Enum
+
+
+![](https://velog.velcdn.com/images/wnsqud70/post/2499c8c6-9eb4-4e36-8f59-03f380057ec7/image.png)
+
+
+![](https://velog.velcdn.com/images/wnsqud70/post/e4df1fc1-5990-41f5-b99a-745c17a04476/image.png)
+
+
+
+![](https://velog.velcdn.com/images/wnsqud70/post/24adf873-e239-4c03-a8b8-2408de4bafd3/image.png)
+
+- 자바에서 **enum**에 대한 리플렉션을 막아놨기때문에 **유일한 인스턴스가 보장**이 된다.
+
+- 단점은 Enum은 자바에서 미리만들어 두기떄문에 자원낭비가 가능하다.
+
+- **Enum은 내부적으로 Serializabled 인터페이스를 구현**하고 있다. 그렇기 때문에 직렬화/역직렬화가 가능하며 또 다른 중요한 포인트는 **역직렬화시 어떠한 장치가 필요로 하지않고 똑같은 인스턴스 반환 가능하다.**
+
+
+
+![](https://velog.velcdn.com/images/wnsqud70/post/c8175a3a-7c71-48dd-9a58-d2803f726840/image.png)
+
+## 역직렬화는 대응 가능
+-  역직렬화시 생기는 문제는 구현시 **readResolve()** 라는 메서드 안에 우리가 만든 **싱글톤 로직을 넣어**주면 됀다.그렇게 되면 같은 인스턴스 생성 가능
+-> **역직렬화시에 readResolve() 를 사용하기 떄문**
+
+
  WIP
