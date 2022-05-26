@@ -141,4 +141,20 @@
 -> **역직렬화시에 readResolve() 를 사용하기 떄문**
 
 
- WIP
+ #  자바라이브러리 싱글톤
+
+
+![](https://velog.velcdn.com/images/wnsqud70/post/da2de4e2-abf7-4538-8339-6c8955cbfc61/image.png)
+
+
+- **Runtime** 이라는 자바 라이브러리가 있는데 이 라이브러리는 싱글톤 패턴으로 구성되어 있다.
+- 주로 애플리케이션 실행환경에 대한 코드를 수행한다.
+
+# 싱글톤 Scope
+
+![](https://velog.velcdn.com/images/wnsqud70/post/346759f4-bb16-4e5b-9feb-072f1f1f7b18/image.png)
+
+- 주로 실무에서 Spring 사용한다는 가정하에 싱글톤 패턴과 가장가까운 방식이다.(정확히는 싱글톤 패턴이 아님)
+
+- ApplicationContext **안에서** 유일한 인스턴스로 관리해주는 것일뿐.
+
