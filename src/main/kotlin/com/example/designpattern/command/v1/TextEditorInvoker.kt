@@ -1,4 +1,4 @@
-package com.example.designpattern.command
+package com.example.designpattern.command.v1
 
 import java.util.Stack
 
